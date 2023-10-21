@@ -3,6 +3,8 @@
  * @param {number} n
  * @return {boolean}
  */
+
+
 var canPlaceFlowers = function(flowerbed, n) {
     let counter = 0;
     const newArr = flowerbed;
@@ -10,7 +12,6 @@ var canPlaceFlowers = function(flowerbed, n) {
     {
 
         if(newArr[i] === 0)
-
         {
             if((newArr[i - 1] === 0 || newArr[i - 1] === undefined) && (newArr[i + 1]=== 0  || newArr[i + 1]=== undefined))
             {
@@ -20,7 +21,6 @@ var canPlaceFlowers = function(flowerbed, n) {
 
             }
         }
-
     }
     if (n <= counter)
     {
