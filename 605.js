@@ -3,7 +3,8 @@
  * @param {number} n
  * @return {boolean}
  */
-
+//git add
+let counter 1;
 
 var canPlaceFlowers = function(flowerbed, n) {
     let counter = 0;
