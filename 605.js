@@ -22,12 +22,5 @@ var canPlaceFlowers = function(flowerbed, n) {
             }
         }
     }
-    if (n <= counter)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return n <= counter;
 };
