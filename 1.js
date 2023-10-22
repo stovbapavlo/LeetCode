@@ -1,4 +1,4 @@
-let arr = [2,7,11,15];
+/*let arr = [2,7,11,15];
 
 let targer = 9;
 
@@ -16,4 +16,32 @@ for(i = 0; i < arr.length -1; i++)
         }
     }
 }
-console.log(newArr);
+console.log(newArr);*/
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+
+//leetcode
+var twoSum = function(nums, target) {
+    let newArr = [];
+
+    for(let i = 0; i < nums.length -1; i++)
+    {
+        for (let j = i + 1; j < nums.length; j++)
+        {
+            if(nums[i] + nums[j] === target)
+            {
+                
+                newArr.push(i);
+
+                newArr.push(j);
+
+            }
+        }
+    }
+    return newArr;
+};
+
