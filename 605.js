@@ -3,6 +3,7 @@
  * @param {number} n
  * @return {boolean}
  */
+//git add
 
 
 var canPlaceFlowers = function(flowerbed, n) {
