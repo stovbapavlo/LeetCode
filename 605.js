@@ -25,5 +25,4 @@ var canPlaceFlowers = function(flowerbed, n) {
     }
     return n <= counter;
 };
-// test new
-// commitgit new add
+new add
