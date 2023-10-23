@@ -25,3 +25,5 @@ var canPlaceFlowers = function(flowerbed, n) {
     }
     return n <= counter;
 };
+// test new
+
