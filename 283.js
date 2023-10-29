@@ -1,21 +1,21 @@
-/*
-nums = [0,1,0,3,12]
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    let nonZeroIndex = 0;
 
-let zeroElements = []
-let noZeroElements = []
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== 0)
+        {
+            let temp = nums[i];
+            nums[i] = nums[nonZeroIndex];
+            nums[nonZeroIndex] = temp;
+            nonZeroIndex++;
+        }
 
-for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== 0)
-    {
-        noZeroElements.push(nums[i]);
+
     }
-    else
-    {
-        zeroElements.push(nums[i]);
-    }
 
-}
-let result = noZeroElements.concat(zeroElements);
 
-console.log(result);*/
-
+};
