@@ -22,7 +22,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
 };
 
 
-
+/*
 
 
 let nums1 = [3, 2]
