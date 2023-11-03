@@ -1,38 +1,21 @@
-let num1 = []
-let num2 = [2, 3]
+let nums1 = [3, 2]
+let nums2 = [-2, -1]
 
 
-let result= 0
-let arr = num1.concat(num2);
-arr.sort();
+let arr = nums1.concat(nums2).sort((a , b) => a - b);
+const n = arr.length;
+
 console.log(arr);
 
-if(arr.length === 1) {
-    result = arr;
+if(n % 2 === 0){
+    const mid = n / 2;
+    console.log(`mid: ${mid}`)
+    console.log(`length: ${n}`)
+    console.log(((arr[mid] + (arr[mid - 1])) / 2));
 }
-else {
-    if(arr.length === 2){
-        middleIndex = 1;
-        result = (arr[middleIndex] + (arr[middleIndex - 1])) / 2
-    }
-    else{
+else{
+    const mid = n / 2;
 
-        const middleIndex = Math.floor(arr.length / 2);
+    console.log(arr[mid]);
 
-        console.log(`middle ${middleIndex}`)
-        if (middleIndex % 2 === 0) {
-            console.log(`arr 1 = ${arr[middleIndex]}`);
-            console.log(`arr 2 = ${arr[middleIndex - 1]}`);
-            result = (arr[middleIndex] + (arr[middleIndex - 1])) / 2
-        } else {
-            result = arr[middleIndex];
-        }
-    }
 }
-
-
-
-
-
-
-console.log(`result = ${result}`);
