@@ -4,12 +4,12 @@ let digitNumber = BigInt(digit.join(''));
 
 console.log(digitNumber.toString());
 
-// Додаємо 1 до BigInt числа
+
 digitNumber ++;
 
 console.log(digitNumber.toString());
 
-// Перетворюємо BigInt число в масив чисел
+
 let newArr = digitNumber.toString().split('').map(Number);
 
 console.log(newArr);
