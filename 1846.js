@@ -14,4 +14,4 @@ for(let i = 1; i < l; ++i){
     ans = Math.min(i + 1, ans + counter[i]);
 }
 
-console.log(ans);
+return ans;
