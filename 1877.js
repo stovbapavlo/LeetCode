@@ -1,14 +1,15 @@
-let arr = [9,2,10,1,10,4,8,9,7,6,8,10,8,6,5,4,3,4,2,10];
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minPairSum = function(nums) {
+    nums.sort((a,b)=> a - b);
+    let res = [];
 
-arr.sort((a, b)=> a - b);
+    for(let i = 0; i < nums.length/ 2; i++)
+    {
+        res.push(nums[i] + nums[nums.length - 1 - i]);
+    }
 
-let res = [];
-
-for(let i = 0;i < arr.length / 2;  i++ )
-{
-    res.push(arr[i] + arr[arr.length - 1 - i]);
-}
-
-
-console.log(Math.max(...res));
-
+    return Math.max(...res);
+};
