@@ -1,17 +1,18 @@
-let nums = [1,2,4], k = 5;
+let nums = [1,4,8,13], k = 5;
 
 nums.sort((a,b) => a - b);
-let l = 0, r = 0;
+
+let i = 0, j = 0;
 let res = 0, total = 0;
 
-for(l = 0; l < nums.length; l++){
-    total += nums[l];
-    while(nums[l]*(l - r + 1) > total + k){
-        total -= nums[l];
-        l += 1;
+for(i = 0; i < nums.length; i++){
+    res += nums[i];
 
-        res = Math.max(res, r - l + 1);
-        r += 1;
+    while((i - j + 1) * nums[i]- res > k){
+        res -= nums[j];
+        j++;
+
     }
+    total = Math.max(total, i - j + 1);
 }
-console.log(res);
+console.log(total);
