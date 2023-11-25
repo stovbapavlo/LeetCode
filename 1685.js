@@ -2,6 +2,11 @@ let nums = [1,4,6,8,10];
 
 let n = nums.length
 
+if(n < 2 || n > 10**5)
+{
+    return [];
+}
+
 let result = [];
 
 let sum = 0;
