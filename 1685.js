@@ -19,7 +19,6 @@ var getSumAbsoluteDifferences = function(nums) {
 /**
  * @param {number[]} nums
  * @return {number[]}
- */
 var getSumAbsoluteDifferences = function(nums) {
     let res = []
     let sum = nums.reduce((a, b) => a + b)
@@ -37,4 +36,20 @@ var getSumAbsoluteDifferences = function(nums) {
     }
     return res
 
-};
+};*/
+
+let nums = [1,4,6,8,10];
+
+let result = [];
+
+let sum = 0
+
+for (let i = 0; i < nums.length; i++) {
+    for (let j = 0; j < nums.length; j++) {
+        sum += Math.abs(nums[i] - nums[j]);
+
+    }
+    result.push(sum);
+    sum = 0;
+}
+console.log(result);
