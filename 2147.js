@@ -1,7 +1,7 @@
-/**
+/*
+*
  * @param {string} corridor
  * @return {number}
- */
 var numberOfWays = function(corridor) {
     let m = 1e9 + 7;
     let seat_number = [];
@@ -17,4 +17,26 @@ var numberOfWays = function(corridor) {
         result = (result * (seat_number[i] - seat_number[i - 1])) % m
     }
     return result;
+};*/
+
+/**
+ * @param {string} corridor
+ * @return {number}
+ */
+var numberOfWays = function(corridor) {
+    let m = 1e9 + 7;
+    let zero = 0;
+    let one = 0;
+    let two = 1;
+
+    for(const thing of corridor) {
+        if(thing ==='S'){
+            zero = one;
+            [one, two] = [two, one]
+
+        }else{
+            two = (two + zero) % m
+        }
+    }
+    return zero;
 };
