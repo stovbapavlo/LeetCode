@@ -18,3 +18,18 @@ console.log(counter);*/
 
     return str === '0' ? 0 : (str.match(/1/g)).length;
 };*/
+
+
+var hammingWeight = function(n) {
+    let counter = 0;
+
+    while(n !== 0){
+        const bit = n & 1;
+        if(bit === 1) counter++;
+        n >>>= 1;
+    }
+    return counter;
+
+
+
+};
