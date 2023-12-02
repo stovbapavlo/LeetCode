@@ -9,4 +9,4 @@ for (let i = 0; i < word2.length; i++) {
     right += word2[i];
 }
 
-return left === right;
+//return left === right;
