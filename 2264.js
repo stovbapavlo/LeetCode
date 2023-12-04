@@ -10,5 +10,5 @@ while(counter !== 2){
     console.log(counter + `\n`)
     i++;
 }
-console.log(num[i].repeat(3));
+
 
