@@ -7,8 +7,8 @@
  * }
  */
 /**
- * @param {TreeNode} root
- * @return {string}
+ * //@param {TreeNode} root
+ * //@return {string}
 var tree2str = function(root) {
     function dfs(node) {
         if (!node) {
