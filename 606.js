@@ -26,3 +26,9 @@ var tree2str = function(root) {
 
     return dfs(root);
 };
+
+/*
+if (!t) return '';
+const left = tree2str(t.left);
+const right = tree2str(t.right);
+return t.val + (left || right ? `(${left})` : '') + (right ? `(${right})` : '');*/
