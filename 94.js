@@ -1,16 +1,16 @@
-var inorderTraversal = function(root) {
-    if(root == null) return [];
-
-    let index = [];
-
-    var traverse = function(node)
-    {
-        if(node != null){
-            traverse(node.left)
-            index.push(node.val)
-            traverse(node.right)
-        }
-
+let ans = [];
+let tree = function (root, ans) {
+    if (!root) {
+        return;
     }
-    traverse(root);
-    return index;
+    if (root.left) {
+        tree(root.left, ans);
+    }
+    ans.push(root.val);
+    if (root.right) {
+        tree(root.right, ans);
+    }
+};
+
+tree(root, ans);
+return ans;
