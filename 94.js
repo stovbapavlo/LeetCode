@@ -13,4 +13,4 @@ let tree = function (root, ans) {
 };
 
 tree(root, ans);
-return ans;
+//return ans;
