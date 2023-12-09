@@ -1,17 +1,16 @@
 var inorderTraversal = function(root) {
-    const res = [];
-    const stack = [];
+    if(root == null) return [];
 
-    while(root || stack.length){
-        if(root){
-            stack.push(root);
-            root = root.left;
+    let index = [];
 
-        }else{
-            root = stack.pop();
-            res.push(root.val);
-            root = root.right
+    var traverse = function(node)
+    {
+        if(node != null){
+            traverse(node.left)
+            index.push(node.val)
+            traverse(node.right)
         }
-    }return res;
 
-};
+    }
+    traverse(root);
+    return index;
