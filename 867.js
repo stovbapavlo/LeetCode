@@ -1,19 +1,18 @@
 let matrix = [[1,2,3],[4,5,6],[7,8,9]];
-let n = 0;
+let n = matrix[1].length;
 let res = [];
-let s = [];
-let j = 0;
-while(n < matrix[1].length){
-    for (let i = 0; i < matrix[1].length; i++) {
-    res.push(matrix[i][j])
-        console.log(res);
-}
-    s.push(res);
-    console.log(s);
+let arr = [];
 
-    res = [];
-    j++;
-    n++;
+for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+        arr.push(matrix[j][i]);
+
+    }
+    res.push(arr);
+    arr = [];
+
+
 }
 
-console.log(s);
+
+console.log(res);
