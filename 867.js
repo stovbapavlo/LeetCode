@@ -16,6 +16,4 @@ while(n < matrix[1].length){
     n++;
 }
 
-
-
 console.log(s);
