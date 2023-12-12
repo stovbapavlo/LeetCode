@@ -1,7 +1,13 @@
-let s = "A man, a plan, a canal: Panama";
+var isPalindrome = function(s) {
+    if(s  == '')
+    {
+        return '';
+    }
 
-const str = s.replace(/[^\w\s]/g, '').replace(/\s+/g, '').toLowerCase();
+    const str = s.replace(/[^a-z0-9]/gi,'').toLowerCase();
 
-const pal = str.split('').reverse().join('')
+    const pal = str.split('').reverse().join('');
 
-console.log(pal);
+    return str == pal;
+
+};
