@@ -1,4 +1,4 @@
-let digit = [6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3];
+/*let digit = [6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3];
 
 let digitNumber = BigInt(digit.join(''));
 
@@ -12,4 +12,7 @@ console.log(digitNumber.toString());
 
 let newArr = digitNumber.toString().split('').map(Number);
 
-console.log(newArr);
+console.log(newArr);*/
+
+let num = BigInt(digits.join("")) + 1n;
+//return num.toString().split("")
