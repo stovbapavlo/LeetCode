@@ -1,10 +1,12 @@
-let paths =[["pYyNGfBYbm","wxAscRuzOl"],["kzwEQHfwce","pYyNGfBYbm"]];
+const startCities = [];
+const endCities = [];
 
-
-for(let i = paths.length - 1; i > 0; i--){
-    console.log(i);
-    if(paths[i][0] !== paths[i - 1][1]){
-        console.log(paths[i - 1][1]);
-    }
-
+for (const path of paths) {
+    startCities.push(path[0]);
+    endCities.push(path[1]);
 }
+
+
+const destinationCity = endCities.filter(city => !startCities.includes(city))[0];
+
+//return destinationCity;
