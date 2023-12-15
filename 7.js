@@ -3,16 +3,16 @@
  * @return {number}
  */
 var reverse = function(x) {
-    const isNegative = x < 0;
-
-    let rev = 0;
-    if (isNegative) { x = -x }
-
-    while(x > 0){
-        const remainder = x % 10;
-        rev = rev * 10 + remainder;
-        x = Math.floor(x / 10);
+    let y = x.toString().split("");
+    let neg = false;
+    if(y[0] == '-') {
+        neg = true;
+        y.shift()
     }
-    if(rev > Math.pow(2, 31)) {return 0}
-    return isNegative? -rev : rev
+    let z = y.reverse()
+    let q = Number(z.join(''))
+    if(q > 0x7FFFFFFF) {
+        return 0;
+    }
+    return Number(neg ? -q: q)
 };
