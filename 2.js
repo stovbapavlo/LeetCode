@@ -1,9 +1,41 @@
-let l1 =[2,4,3]
-let l2 = [5,6,4]
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ this.val = (val===undefined ? 0 : val)
+ this.next = (next===undefined ? null : next)
+ }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function(l1, l2) {
 
-let result = (parseInt(l1.join('')) + parseInt(l2.join(''))).toString().trim().split('').map(Number);
+    let res = new ListNode(0);
+    let head = res;
+    let sum = 0;
+    let curr = 0;
 
-let reverse = result.reverse();
+    while(l1 !== null || l2 !== null|| sum > 0){
+        if(l1 !== null){
+            sum += l1.val;
+            l1 = l1.next;
+        }
+        if(l2 !== null) {
+            sum += l2.val;
+            l2 = l2.next;
+        }
+        if(sum >= 10){
+            curr = 1;
+            sum -= 10;
+        }
+        head.next = new ListNode(sum);
+        head = head.next;
+        sum = curr;
+        curr = 0;
 
+    }
+    return res.next;
 
-console.log(reverse);
+};
