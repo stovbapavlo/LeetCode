@@ -13,3 +13,18 @@ var makeEqual = function(words) {
     }
     return true;
 };
+
+/*const length = words.length;
+    const charCount = new Array(26).fill(0);
+
+    for(const word of words){
+        for(const char of word){
+            charCount[char.charCodeAt(0) - 'a'.charCodeAt(0)]++
+        }
+    }
+    for(const count of charCount){
+        if(count % length !== 0){
+            return false;
+        }
+    }
+    return true;*/
