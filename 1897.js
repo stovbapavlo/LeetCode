@@ -1,3 +1,4 @@
+/*
 let charMap = {}
 words.forEach( e => {
     e.split('').forEach(el => {
@@ -10,6 +11,7 @@ for(let count of Object.values(charMap)) {
 }
 return true
 
+*/
 
 
 
