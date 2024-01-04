@@ -1,23 +1,30 @@
-const counts = new Map();
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minOperations = function(nums) {
+    const counts = new Map();
 
-for (const num of nums) {
-    const current = counts.get(num) ?? 0;
-    counts.set(num, current + 1);
-}
-
-let result = 0;
-
-for (const [key, count] of counts) {
-    if (count === 1) return -1;
-    if (count % 3 === 0) result += count / 3;
-    else {
-        const threes = Math.floor((count - 2) / 3);
-        const twos = (count - (threes * 3)) / 2;
-        result += threes + twos;
+    for (const num of nums) {
+        const current = counts.get(num) ?? 0;
+        counts.set(num, current + 1);
     }
-}
+    a
+    let result = 0;
 
-return result;
+    for (const [key, count] of counts) {
+        if (count === 1) return -1;
+        if (count % 3 === 0) result += count / 3;
+        else {
+            const threes = Math.floor((count - 2) / 3);
+            const twos = (count - (threes * 3)) / 2;
+            result += threes + twos;
+        }
+    }
+
+    return result;
+};
+
 
 
 /*
