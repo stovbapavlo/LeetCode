@@ -1,18 +1,17 @@
-let nums = [10,9,2,5,3,7,101,18]
-let res = 0;
-let min = nums[0]
-for(let i = 0; i < nums.length; i++){
-    if(min > nums[i]){
-        min = nums[i]
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function(nums) {
+    let dp = new Array(nums.length).fill(1);
+    let longest = 1;
+    for (let i = 1; i < nums.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (nums[j] < nums[i]) {
+                dp[i] = Math.max(dp[i], dp[j]+1);
+                longest = Math.max(longest, dp[i]);
+            }
+        }
     }
-    console.log(`min value ${min},\n itat${i}`)
-
-    if(min <= nums[i + 1]){
-        res++
-    }
-    else if(num){
-
-    }
-    console.log(`res${res}, ${i}`)
-}
-console.log(res);
+    return longest;
+};
