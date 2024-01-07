@@ -1,21 +1,36 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 var numberOfArithmeticSlices = function(nums) {
     const n = nums.length;
-    let total_count = 0;
+    const dp = Array.from(Array(n), () => Array(n).fill(0));
+    const map = new Map();
 
-    const dp = new Array(n).fill().map(() => new Map());
+    for (let i = 0; i < n; i++) {
+        const temp = nums[i];
+        if (!map.has(temp)) {
+            map.set(temp, []);
+        }
+        map.get(temp).push(i);
+    }
 
-    for (let i = 1; i < n; ++i) {
-        for (let j = 0; j < i; ++j) {
-            const diff = nums[i] - nums[j];
-
-            if (dp[j].has(diff)) {
-                dp[i].set(diff, (dp[i].get(diff) || 0) + dp[j].get(diff));
-                total_count += dp[j].get(diff);
+    let totalSum = 0;
+    for (let i = 1; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+            const a = 2 * nums[i] - nums[j];
+            if (map.has(a)) {
+                for (const k of map.get(a)) {
+                    if (k < i) {
+                        dp[i][j] += dp[k][i] + 1;
+                    } else {
+                        break;
+                    }
+                }
             }
-
-            dp[i].set(diff, (dp[i].get(diff) || 0) + 1);
+            totalSum += dp[i][j];
         }
     }
 
-    return total_count;
+    return totalSum;
 };
