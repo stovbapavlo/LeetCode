@@ -1,15 +1,15 @@
 var closeStrings = function(word1, word2) {
-    if (word1.length !== word2.length) return false;
-    const obj1 = {};
-    const obj2 = {};
-
-    for (let i = 0; i < word1.length; i++) {
-        obj1[word1[i]] = obj1[word1[i]] ? obj1[word1[i]] + 1 : 1;
-        obj2[word2[i]] = obj2[word2[i]] ? obj2[word2[i]] + 1 : 1;
+    if(word1.length!==word2.length)return false
+    if (word1 == word2) return true
+    let ar1=Array(26).fill(0)
+    let ar2=Array(26).fill(0)
+    for(i=0;i<word1.length;i++)
+    {
+        ar1[word1.charCodeAt(i) - 97]++
+        ar2[word2.charCodeAt(i) - 97]++
     }
-
-    const letters = Object.keys(obj1).sort().join("") === Object.keys(obj2).sort().join("");
-    const values = Object.values(obj1).sort().join("") === Object.values(obj2).sort().join("");
-
-    return letters && values;
+    for(let i=0;i<ar1.length;i++){
+        if((ar1[i]==0 && ar2[i]>0) ||  (ar1[i]>0 && ar2[i]==0))return false
+    }
+    return  ar1.sort().join("") === ar2.sort().join("")
 };
