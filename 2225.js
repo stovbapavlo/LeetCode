@@ -1,22 +1,17 @@
-let matches = [[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]];
-
-let res = [[],[]];
-
-
-for(let i = 0; i < matches.length; i++){
-    let counter = 0;
-    for(let j = i + 1; j < matches.length; j++){
-        if(matches[i][0] === matches[j][1]){
-            counter++
-        }
+/**
+ * @param {number[][]} matches
+ * @return {number[][]}
+ */
+var findWinners = function(matches) {
+    let lost = {};
+    for(let [winner, loser] of matches){
+        lost[winner] = (lost[winner] || 0);
+        lost[loser] = (lost[loser] || 0) + 1;
     }
-    if(counter === 0){
-        res[[0]].push(matches[i][0])
+    let res = [[], []];
+    for(let player in lost){
+        if(lost[player] === 0) res[0].push(+player);
+        else if(lost[player] === 1) res[1].push(+player);
     }
-    else if( counter === 1){
-        res[[1]].push(matches[i][0])
-    }
-
-}
-
-console.log(res);
+    return res;
+};
