@@ -3,13 +3,19 @@
  * @return {boolean}
  */
 var uniqueOccurrences = function(arr) {
-    let map = {};
+    const map = {}
+    const seen = new Set()
 
-    for(let num of arr) {
-        map[num] = (map[num] || 0) + 1;
+    for (let num of arr) {
+        map[num] = (map[num] || 0) + 1
     }
 
-    const uniq = new Set(Object.values(map));
+    for (let it in map) {
+        if (seen.has(map[it])) {
+            return false
+        }
+        seen.add(map[it])
+    }
 
-    return Object.values(map).length === uniq.size;
+    return true
 };
