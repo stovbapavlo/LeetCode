@@ -1,23 +1,43 @@
-const matrix = [[2,1,3],[6,5,4],[7,8,9]];
+/**
+ * @param {number[][]} matrix
+ * @return {number}
+ */
+var minFallingPathSum = function(matrix) {
+    const n = matrix.length;
 
-let sum = 0;
-let col = 0; // початковий стовпець
+    const memo = [];
 
-for (let i = 0; i < matrix.length; i++) {
-    let minNum = Infinity;
-    let indexMinEl = col;
-
-    // Перевіряємо можливі переходи: вліво, прямо, вправо
-    for (let j = col - 1; j <= col + 1; j++) {
-        if (j >= 0 && j < matrix[0].length && matrix[i][j] < minNum) {
-            minNum = matrix[i][j];
-            indexMinEl = j;
-        }
+    for(let i = 0; i < n; i++) {
+        memo.push(new Array(n).fill(null))
     }
 
-    // Оновлюємо суму та стовпець для наступного кроку
-    sum += minNum;
-    col = indexMinEl;
-}
+    let ans = Infinity;
 
-console.log(sum);
+    for (let col = 0; col < n; col++) {
+        ans = Math.min(ans, dp(n - 1, col));
+    }
+
+    return ans;
+
+    function dp(row, col) {
+        if (col < 0 || col >= n) {
+            return Infinity;
+        }
+
+        if (row === 0) {
+            return matrix[row][col];
+        }
+
+        if (memo[row][col] === null) {
+            const curr = matrix[row][col];
+
+            const middle = dp(row - 1, col);
+            const left = dp(row - 1, col - 1);
+            const right = dp(row - 1, col + 1);
+
+            memo[row][col] = curr + Math.min(middle, left, right);
+        }
+
+        return memo[row][col];
+    }
+};
