@@ -1,17 +1,18 @@
-M = 10**9+7
-stack = [-1]
-res = 0
-arr.push(0)
+sumSubarrayMins = function(arr) {
+    const stack = [0]
+    arr.splice(0, 0, -Infinity)
+    arr.push(-Infinity)
+    let res = 0
 
-for(let i2 = 0; i2 < arr.length; i2++){
-    while(arr[i2] < arr[stack[stack.length -1]]){
-        i = stack.pop()
-        i1 = stack[stack.length-1]
-        Left = i - i1
-        Right = i2 -i
-        res += (Left*Right*arr[i])
-    };
-    stack.push(i2)
-};
+    for (let i = 1; i < arr.length; i++) {
+        while (stack.length && arr[i] < arr[stack[stack.length - 1]]) {
+            const mid = stack.pop()
+            const left = mid - stack[stack.length - 1]
+            const right = i - mid
+            res += left * right * arr[mid]
+        }
 
-return res%M
+        stack.push(i)
+    }
+
+    return res % (10 ** 9 + 7)
