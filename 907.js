@@ -1,4 +1,8 @@
-sumSubarrayMins = function(arr) {
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var sumSubarrayMins = function(arr) {
     const stack = [0]
     arr.splice(0, 0, -Infinity)
     arr.push(-Infinity)
@@ -16,3 +20,4 @@ sumSubarrayMins = function(arr) {
     }
 
     return res % (10 ** 9 + 7)
+};
