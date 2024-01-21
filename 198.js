@@ -1,16 +1,19 @@
-const nums = [2,7,9,3,1];
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function(nums) {
 
-let sum1 = 0, sum2 = 0;
+    const dp = new Array(nums.length);
 
+    dp[0] = nums[0];
+    dp[1] = Math.max(nums[0], nums[1]);
 
-for(let i = 0; i < nums.length; i++) {
-    if(i % 2 === 0 || i === 0) {
-        sum1 += nums[i];
+    for(let i = 2; i < nums.length; i++){
+        dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
     }
-    else {
-        sum2 += nums[i];
-    }
-}/
+
+    return dp[nums.length - 1];
 
 
-
+};
