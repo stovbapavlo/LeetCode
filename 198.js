@@ -10,7 +10,7 @@ for(let i = 0; i < nums.length; i++) {
     else {
         sum2 += nums[i];
     }
-}
+}/
 
 
 
