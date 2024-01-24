@@ -34,4 +34,28 @@ var dfs = function(root, mask) {
 };
 
 
-/**/
+/*
+* pseudoPalindromicPaths  = r => {
+
+    let res = 0
+
+    f = (r, a, s) => {
+        a[r.val]++
+        s++
+        if (!r.left && !r.right) g(a, s)
+        if (r.left) f(r.left, a, s)
+        if (r.right) f(r.right,a, s)
+        a[r.val]--
+    }
+
+    g = (a,s) => {
+        let t = 0
+        for (let e of a) t += e & 1
+        res += t <= (s & 1)
+    }
+
+    f(r, Array(10).fill(0), 0)
+
+    return res
+}
+* */
