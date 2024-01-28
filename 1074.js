@@ -4,26 +4,27 @@
  * @return {number}
  */
 var numSubmatrixSumTarget = function(matrix, target) {
-    let m = matrix.length, n = matrix[0].length;
-    let res = 0;
+    let rows = matrix.length, cols = matrix[0].length;
+    let count = 0;
 
-    for(let l = 0; l < n; ++l){
-        let sums = new Array(105).fill(0);
-        for(let r = l; r < n; ++r){
-            for(let i = 0; i < m; ++i){
-                sums[i] += matrix[i][r];
-            }
-            for(let i = 0; i < m; ++i){
-                let sum = 0;
-                for(let j = i; j < m; ++j){
-                    sum += sums[j];
-                    if(sum === target){
-                        ++res;
+    for (let row = 0; row < rows; row++) {
+        for (let col = 1; col < cols; col++) {
+            matrix[row][col] += matrix[row][col - 1]
+        }
+    }
 
-                    }
-                }
+    for (let col1 = 0; col1 < cols; col1++) {
+        for (let col2 = col1; col2 < cols; col2++) {
+            let currSum = 0;
+            let map = new Map();
+            map.set(0,1)
+
+            for (let row = 0; row < rows; row++) {
+                currSum += matrix[row][col2] - (col1 > 0 ? matrix[row][col1 - 1] : 0)
+                count += map.get(currSum - target) || 0
+                map.set(currSum, map.get(currSum) + 1 || 1)
             }
         }
     }
-    return res;
+    return count;
 };
