@@ -15,13 +15,11 @@ MyQueue.prototype.push = function(x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
-    const temp = this.stack[0];
-    let toReturn;
-    if(this.stack.length > 0){
-        toReturn = temp;
+    if(this.stack.length === 0){
+        return undefined
     }
-    this.stack.shift();
-    return toReturn;
+
+    return this.stack.shift();
 };
 
 /**
