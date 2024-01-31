@@ -1,17 +1,20 @@
-const temperatures = [73,74,75,71,69,72,76,73];
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+var dailyTemperatures = function(temps) {
+    let stack = [];
+    let answer = [];
 
-let res = [];
-let stack = []
+    for (let i = 0; i < temps.length; i++) {
+        answer[i] = 0;
+        while (stack.length !== 0 && temps[stack[stack.length - 1]] < temps[i]) {
+            const oldIdx = stack.pop();
+            const oldVal = temps[oldIdx];
+            answer[oldIdx] = i - oldIdx;
+        }
 
-for(let i = 0; i < temperatures.length; i++){
-    while(stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
-        let idx = stack.pop();
-        res[idx] = i - idx;
+        stack.push(i);
     }
-    stack.push(i);
-}
-
-while(stack.length > 0) {
-    res[stack.pop()]= 0;
-}
-console.log(res);
+    return answer;
+};
