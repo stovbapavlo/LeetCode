@@ -1,19 +1,17 @@
-    const temperatures = [73,74,75,71,69,72,76,73];
+const temperatures = [73,74,75,71,69,72,76,73];
 
-    let res = [];
-    let counter = 0;
-    for(let i = 0; i < temperatures.length; i++){
-        for(let j = i + 1; j < temperatures.length; j++){
-            console.log(temperatures[j])
-            if(temperatures[i] < temperatures[j]){
-                counter++;
-                res.push(counter);
-                counter = 0;
-                break;
-            }
-            else{
-                counter++;
-            }
-        }
+let res = [];
+let stack = []
+
+for(let i = 0; i < temperatures.length; i++){
+    while(stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+        let idx = stack.pop();
+        res[idx] = i - idx;
     }
-    console.log(res);
+    stack.push(i);
+}
+
+while(stack.length > 0) {
+    res[stack.pop()]= 0;
+}
+console.log(res);
