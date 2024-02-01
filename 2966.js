@@ -1,16 +1,19 @@
-let nums = [1,3,4,8,7,9,3,5,1], k = 2
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[][]}
+ */
+var divideArray = function(nums, k) {
+    nums.sort((a, b) => a - b);
+    const res = [];
 
-const res = []
-
-nums.sort((a, b) => a - b);
-
-console.log(nums);
-
-for (let i = 2; i < nums.length; i = i + 3) {
-    if((nums[i -1] - nums[i - 2] > k) || (nums[i] - nums[i - 1] > k) || (nums[i] - nums[i - 2] > k)) {
-       // return [];
+    for (let i = 0; i < nums.length; i+=3){
+        if (nums[i+1] - nums[i] <= k && nums[i+2] - nums[i] <= k){
+            res.push([nums[i], nums[i+1], nums[i+2]])
+        } else {
+            return []
+        }
     }
-    else {
-        res.push([nums[i - 2], nums[i - 1], nums[i]])
-    }
-}
+
+    return res;
+};
