@@ -14,7 +14,7 @@ var minWindow = function(s, t) {
     let count = Object.keys(map).length;
 
     while (right <= s.length) {
-        if (count == 0) {
+        if (count === 0) {
             let current = s[left];
 
             if (map[current] != null) map[current]++;
@@ -22,7 +22,7 @@ var minWindow = function(s, t) {
             if (map[current] > 0) count++;
 
             let temp = s.substring(left, right+1)
-            if (min == "") min = temp;
+            if (min === "") min = temp;
             else min = min.length<temp.length?min:temp;
 
             left++;
@@ -32,7 +32,7 @@ var minWindow = function(s, t) {
 
             if (map[current] != null) map[current]--;
 
-            if (map[current] == 0) count--;
+            if (map[current] === 0) count--;
         }
     }
     return min;
