@@ -1,9 +1,16 @@
-
-nums = [1, 3, 3, 2]
-nums.sort((a, b) => a - b)
-let n = nums.length, v = 1;
-if(nums[n - 1] !== nums[n - 2]) return false
-for(let i = 0; i < n - 1; i++){
-    if(nums[i] !== v++) return false;
-}
-return true
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var isGood = function(nums) {
+    const base = nums.sort((a,b)=>b-a);
+    if((base[0]+1)!==nums.length || base[0]!==base[1]){
+        return false
+    }
+    for(let i=1;i<nums.length;i++){
+        if(!base.includes(i)){
+            return false
+        }
+    }
+    return true
+};
