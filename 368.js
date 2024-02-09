@@ -1,30 +1,34 @@
-
-function largestDivisible(nums){
-    if(nums.length === 0){
-        return [];
-    }
-
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var largestDivisibleSubset = function(nums) {
     nums.sort((a, b) => a - b);
+    const len = nums.length;
+    const count = new Array(len).fill(1);
+    const prev = new Array(len).fill(-1);
+    let maxIndex = 0;
 
-    let subsets = [[nums[0]]];
-    let maxSubsetIndex = 0;
-
-    for(let i = 1; i < nums.length; i++) {
-        let subsetFound = false;
-
-        for(let j = 0; j < subsets.length; j++) {
-            if(nums[i] % subsets[j][0] === 0) {
-                subsets[j].unshift(nums[i]);
-                subsetFound = true;
-                break;
+    for (let i = 1; i < len; i++) {
+        for (let j = 0; j < i; j++) {
+            if (nums[i] % nums[j] === 0 && count[j] + 1 > count[i]) {
+                count[i] = count[j] + 1;
+                prev[i] = j;
             }
         }
-        if(!subsetFound){
-            subsets.push([nums[i]])
-        }
-        if(subsets[subsets.length - 1].length > subsets[maxSubsetIndex].length) {
-            maxSubsetIndex = subsets.length - 1;
+
+        if (count[i] > count[maxIndex]) {
+            maxIndex = i;
         }
     }
-    return subsets[maxSubsetIndex];
-}
+
+    const result = [];
+    let k = maxIndex;
+    while (k >= 0) {
+        result.push(nums[k]);
+        k = prev[k];
+    }
+
+    return result.reverse();
+
+};
