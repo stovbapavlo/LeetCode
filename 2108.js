@@ -16,5 +16,5 @@ for(let i = 0; i < words.length; i++){
     }
 }
 
-console.log(res === '' ? '': res)
+console.log(res === undefined ? '': res)
 
