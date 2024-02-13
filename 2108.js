@@ -11,10 +11,10 @@ function isPalindromic(text) {
 
 for(let i = 0; i < words.length; i++){
     if(isPalindromic(words[i])){
-        res = words[i]
-        break;
+        return words[i]
+
     }
 }
 
-console.log(res === undefined ? '': res)
+return ''
 
