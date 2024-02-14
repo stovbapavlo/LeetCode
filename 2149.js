@@ -1,9 +1,10 @@
-let positiveNums = nums.filter(x => x > 0)
-let negativeNums = nums.filter(x => x < 0)
-let result = []
+const postiveInt = nums.filter((items) => items > 0);
+const negativeInt = nums.filter((items) => items < 0);
 
-for (let i = 0; i < nums.length / 2; i++) {
-    result.push(positiveNums[i], negativeNums[i])
+let res = [];
+
+for (let i = 0; i < postiveInt.length; i++) {
+    res.push(postiveInt[i], negativeInt[i]);
 }
 
-return result
+return res;
