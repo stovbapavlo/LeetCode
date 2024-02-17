@@ -1,43 +1,48 @@
-const heap = new MaxPriorityQueue({priority: x => x});
-let i;
-
-for(i = 0; i < heights.length; i++){
-    if(heights[i] >= heights[i + 1]) continue;
-
-    const diff = heights[i + 1] - heights[i];
-
-    if(diff > bricks) {
-        if(ladders === 0) break;
-
-        if(!heap.isEmpty() && heap.front().element > diff) {
-            bricks += heap.dequeue().element - diff;
-            heap.enqueue(diff)
+/**
+ * @param {number[]} heights
+ * @param {number} bricks
+ * @param {number} ladders
+ * @return {number}
+ */
+var  furthestBuilding = function(heights, bricks, ladders) {
+    let ans = 0;
+    let ladderHeap = new PriorityQueue({
+        compare: (a, b) => {
+            return a.height - b.height;
         }
-        ladders--;
-    } else{
-        bricks -= diff;
-        heap.enqueue(diff);
-    }
-}
-return iconst heap = new MaxPriorityQueue({priority: x => x});
-let i;
+    })
 
-for(i = 0; i < heights.length; i++){
-    if(heights[i] >= heights[i + 1]) continue;
-
-    const diff = heights[i + 1] - heights[i];
-
-    if(diff > bricks) {
-        if(ladders === 0) break;
-
-        if(!heap.isEmpty() && heap.front().element > diff) {
-            bricks += heap.dequeue().element - diff;
-            heap.enqueue(diff)
+    for(let i = 1; i < heights.length; i++) {
+        if(heights[i] <= heights[i-1]) ans++;
+        else {
+            const height = heights[i] - heights[i-1];
+            if(ladders > 0) {
+                ladderHeap.enqueue({
+                    i,
+                    height
+                });
+                ladders--;
+                ans++;
+            } else if(bricks > 0) {
+                const currentLadder = ladderHeap.front();
+                if(currentLadder && height > currentLadder.height) {
+                    if(bricks >= currentLadder.height) {
+                        ladderHeap.dequeue();
+                        bricks -= currentLadder.height;
+                        ans++;
+                        ladderHeap.enqueue({
+                            i,
+                            height
+                        })
+                    }
+                    else return ans;
+                } else {
+                    bricks -= height;
+                    if(bricks < 0) return ans;
+                    ans++;
+                }
+            } else return ans;
         }
-        ladders--;
-    } else{
-        bricks -= diff;
-        heap.enqueue(diff);
     }
-}
-return i
+    return ans;
+};
