@@ -4,46 +4,35 @@
  * @return {number}
  */
 var mostBooked = function(n, meetings) {
-    let roomsMeetingsCount = Array(n).fill(0);
-    let roomsSchedule = Array(n).fill(0);
+    const roomCounter = new Array(n).fill(0)
+    let availRooms = new Array(n).fill(-1);
+    meetings.sort((a,b) =>  a[0]-b[0])
 
+    meetings.map((meeting)=>{
+        const [start,end] = meeting
 
-    meetings.sort((a, b) => a[0] - b[0]);
+        let earliestRoomIdx = 0;
+        let earliestEndTime = Infinity
 
-    for(let i = 0; i < meetings.length; i += 1){
-        let [start, end] = meetings[i];
-        let earliestTime = Infinity;
-        let earliestRoom = 0;
-        let isFreeRoomFound = false;
+        let availRoomExists = false
 
-        for(let j = 0; j < n; j +=1) {
-            if (roomsSchedule[j] <= start) {
-                roomsMeetingsCount[j] += 1;
-                roomsScheduale[j] = end;
-                isFreeRoomFound = true;
-                break;
+        for (let i = 0; i<n; i++) {
+            if (availRooms[i] <= start) {
+                roomCounter[i]++
+                availRooms[i] = end
+                availRoomExists = true
+                break
             }
-
-            if (roomsSchedule[j] < earliestTime) {
-                earliestTime = roomsSchedule[j];
-                earliestRoom = j;
+            if (availRooms[i] < earliestEndTime) {
+                earliestEndTime = availRooms[i]
+                earliestRoomIdx = i;
             }
         }
-        if (isFreeRoomFound === false) {
-            roomsMeetingsCount[earliestRoom] += 1;
-            roomsSchedule[earliestRoom] += end - start;
+        if (!availRoomExists) {
+            roomCounter[earliestRoomIdx]++
+            availRooms[earliestRoomIdx] += end-start
         }
+    })
 
-    }
-    let maxMeetings = 0
-    let numberOfRoomWithMostMeetings = 0;
-
-    for (let i = 0; i < n; i += 1) {
-        if (roomsMeetingsCount[i] > maxMeetings) {
-            maxMeetings = roomsMeetingsCount[i];
-            numberOfRoomWithMostMeetings = i;
-        }
-    }
-
-    return numberOfRoomWithMostMeetings;
+    return roomCounter.indexOf(Math.max(...roomCounter))
 };
