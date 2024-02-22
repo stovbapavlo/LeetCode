@@ -1,25 +1,22 @@
-let n = 3;
-let trust = [[1,3],[2,3],[3,1]]
+/**
+ * @param {number} n
+ * @param {number[][]} trust
+ * @return {number}
+ */
+var findJudge = function(n, trust) {
+    const trustReceived = new Array(n + 1).fill(0);
+    const trustGiven = new Array(n + 1).fill(0);
 
-
-let findJudge = function(n , trust){
-    if(trust.length === 1){
-        return trust[0][1]
+    for(const [a, b] of trust) {
+        trustReceived[b]++;
+        trustGiven[a]++;
     }
 
-    let trustPerson = trust[0][1]
-
-
-
-    for(let i = 1; i < trust.length - 1; i++){
-        if(trustPerson === trust[i][1]) {
-            n--;
+    for(let person = 1; person <= n; person++) {
+        if (trustReceived[person] === n - 1 && trustGiven[person] === 0) {
+            return person;
         }
-        else if(n === 1){
-            return trustPerson;
-        }
-
     }
-}
 
-console.log(findJudge(3, [[1,3],[2,3],[3,1]]))
+    return -1;
+};
