@@ -4,19 +4,14 @@
  * @return {number}
  */
 var findJudge = function(n, trust) {
-    const trustReceived = new Array(n + 1).fill(0);
-    const trustGiven = new Array(n + 1).fill(0);
+    const counts = new Array(n+1).fill(0)
 
-    for(const [a, b] of trust) {
-        trustReceived[b]++;
-        trustGiven[a]++;
+    for (let [a, b] of trust) {
+        counts[a] -= 1, counts[b] += 1
     }
 
-    for(let person = 1; person <= n; person++) {
-        if (trustReceived[person] === n - 1 && trustGiven[person] === 0) {
-            return person;
-        }
+    for (let i = 1; i < counts.length; i++) {
+        if (counts[i] === n-1) return i
     }
-
-    return -1;
+    return -1
 };
