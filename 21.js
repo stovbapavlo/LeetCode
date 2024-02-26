@@ -10,14 +10,24 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
-var mergeTwoLists = function(l1, l2) {
-    if(!l1 || !l2) return (l1 ? l1 : l2)
-    if(l1.val < l2.val) {
-        l1.next = mergeTwoLists(l1.next, l2)
-        return l1
+var mergeTwoLists = function(list1, list2) {
+
+    if (!list1) return list2;
+    if (!list2) return list1;
+
+    let result = new ListNode();
+    let pointer = result;
+
+    while (list1 && list2) {
+        if (list1.val < list2.val) {
+            pointer.next = list1;
+            list1 = list1.next;
+        } else {
+            pointer.next = list2;
+            list2 = list2.next;
+        }
+        pointer = pointer.next;
     }
-    else {
-        l2.next = mergeTwoLists(l1, l2.next)
-        return l2
-    }
+    pointer.next = list1 || list2;
+    return result.next;
 };
