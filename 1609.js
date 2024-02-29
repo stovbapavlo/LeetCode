@@ -20,7 +20,7 @@ var isEvenOddTree = function(root) {
 
         for(let i = 0; i < currLength;  i++){
             const node = queue[i]
-            if(steps !== 0){
+            if(steps % 2 !== 0){
                 if((i<currLength-1 && node.val<=queue[i+1].val) || node.val%2 !== 0){
                     return false;
                 }
