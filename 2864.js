@@ -1,12 +1,10 @@
-s = "010"
-
-res = 0
-while(res === 0) {
-    if(parseInt(s , 2) % 2 === 1) {
-        res = s;
-    }
-    else {
-
-    }
-}
-console.log(res)
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var maximumOddBinaryNumber = function(s) {
+    s = s.split('').sort((a, b) => b - a)
+    s.shift()
+    s.push(1)
+    return s.join('')
+};
