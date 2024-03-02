@@ -1,7 +1,7 @@
-let nums = [-4,-1,0,3,10];
-
-const Sqrt = nums.map(function (element){
-    return Math.pow(element, 2);
-})
-
-console.log(Sqrt)
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function(nums) {
+    return nums.map((element) => Math.pow(element, 2)).sort((a, b) => a - b)
+};
