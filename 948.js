@@ -22,3 +22,27 @@ var bagOfTokensScore = function(tokens, power) {
     }
     return score
 };
+
+
+/*
+* let score = 0;
+    let resPower = power;
+    const n = tokens.length;
+    let left = 0;
+    let right = n - 1;
+
+    while (left <= right) {
+        if (resPower >= tokens[left]) {
+            resPower -= tokens[left];
+            left++;
+            score++;
+        } else if (score > 0) {
+            resPower += tokens[right];
+            right--;
+            score--;
+        } else {
+            break;
+        }
+    }
+
+    return score;*/
