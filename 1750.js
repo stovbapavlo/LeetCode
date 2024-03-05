@@ -3,18 +3,12 @@
  * @return {number}
  */
 var minimumLength = function(s) {
-    let left = 0;
-    let right = s.length - 1
+    let l = 0, r = s.length - 1;
 
-    while(left < right && s[left] === s[right]) {
-        let char = s[left];
-        while (left <= right && s[left] === char) {
-            left++;
-        }
-        while (right >= left && s[right] === char) {
-            right--;
-        }
+    while(l < r && s[l] === s[r]) {
+        let c = s[l]
+        while(s[l] === c && l <= r) l++
+        while(s[r] === c && l < r) r--
     }
-
-    return right - left + 1;
+    return r - l + 1
 };
