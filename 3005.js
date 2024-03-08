@@ -3,20 +3,16 @@
  * @return {number}
  */
 var maxFrequencyElements = function(nums) {
-    let frequenciesMap = {}
-
-    let maxFrequencies = 0;
+    let frequenciesMap = new Map()
 
     for(let num of nums) {
-        frequenciesMap[num] = (frequenciesMap[num] || 0) + 1
-        maxFrequencies = Math.max(maxFrequencies, frequenciesMap[num])
-    }
+        frequenciesMap.set(num, (frequenciesMap.get(num) || 0) + 1)
 
-    let countMaxFrequency = 0;
-    for(let num in frequenciesMap) {
-        if(frequenciesMap[num] === maxFrequencies) {
-            countMaxFrequency++;
-        }
     }
+    const maxFrequency = Math.max(...frequenciesMap.values())
+
+    const maxFreqElement = [...frequenciesMap.keys()].filter(num => frequenciesMap.get(num) === maxFrequency)
+    let countMaxFrequency = maxFrequency * maxFreqElement.length;
+
     return countMaxFrequency;
 };
