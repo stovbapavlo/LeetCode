@@ -10,23 +10,25 @@
  * @return {ListNode}
  */
 var removeZeroSumSublists = function(head) {
-    const map = new Map();
-    let runningSum = 0;
-    const dummyHead = new ListNode(0, head);
-    let currNode = dummyHead;
-    while (currNode !== null) {
-        runningSum += currNode.val;
-        map.set(runningSum, currNode);
-        currNode = currNode.next;
+    let prefixSum = 0;
+    let sumMap = new Map();
+    let dummy = new ListNode(0);
+    dummy.next = head;
+
+    let current = dummy;
+    while(current) {
+        prefixSum += current.val;
+        sumMap.set(prefixSum, current)
+        current = current.next;
     }
-    currNode = dummyHead;
-    runningSum = 0;
-    while (currNode !== null) {
-        runningSum += currNode.val;
-        if (map.get(runningSum) !== currNode) {
-            currNode.next = map.get(runningSum).next;
-        }
-        currNode = currNode.next;
+
+    prefixSum = 0;
+    current = dummy;
+    while(current) {
+        prefixSum += current.val;
+        current.next = sumMap.get(prefixSum).next;
+        current = current.next;
     }
-    return dummyHead.next;
+
+    return dummy.next
 };
