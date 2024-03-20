@@ -12,23 +12,32 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
-var mergeInBetween = function(list1, a, b, list2) {
-    let start = list1;
-    let end = list1;
+const mergeInBetween = function(list1, a, b, list2) {
+    const list2Tail = getTailOfAList(list2);
+    const head = new ListNode(-1, list1);
+    const arr = [head];
+    let cur = list1;
 
-    for(let i = 0; i <= b && start != null && end != null; i++) {
-        if(i < a - 1) start = start.next;
-        if(i <= b) end = end.next;
+    while (cur) {
+        arr.push(cur);
+        cur = cur.next;
     }
 
-    let tail = list2;
+    arr.push(null);
 
-    while (tail.next != null) {
-        tail = tail.next
-    }
+    arr[a].next = list2;
+    list2Tail.next = arr[b + 2];
 
-    start.next = list2;
-    tail.next = end;
 
-    return list1;
+    return arr[0].next;
 };
+
+function getTailOfAList(list) {
+    let cur = list;
+
+    while (cur.next) {
+        cur = cur.next;
+    }
+
+    return cur;
+}
