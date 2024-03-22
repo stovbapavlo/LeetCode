@@ -10,14 +10,29 @@
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-    let FrString = ScString = '';
-    let node = head;
+    let slow = head;
+    let fast = head;
 
-    while(node != null) {
-        FrString = `${FrString}${node.val}`
-        ScString = `${node.val}${ScString}`
-        node = node.next
+    while (fast && fast.next){
+        fast = fast.next.next;
+        slow = slow.next;
     }
 
-    return FrString === ScString
+    let prev = null;
+    while (slow){
+        let temp = slow.next;
+        slow.next = prev;
+        prev = slow;
+        slow = temp;
+    }
+
+    let left = head;
+    let right = prev;
+
+    while (right){
+        if (right.val !== left.val) return false;
+        left = left.next;
+        right = right.next;
+    }
+    return true;
 };
