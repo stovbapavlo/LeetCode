@@ -13,24 +13,24 @@ const reorderList = function(head) {
     let stack = [];
     let node = head;
 
-    if(!node) return;
 
     while(node) {
         stack.push(node)
         node = node.next;
     }
-
-    let len = stack.length;
     node = head;
-    for(let i = 0; i < len; i++) {
-        if(i % 2 === 0) {
-            node.next = stack.shift();
-        }
-        else {
-            node.next = stack.pop();
-        }
-        node= node.next
+    while (true) {
+        let next = node.next;
+        let newNode = stack.pop();
 
+        if(node === newNode || next === node) {
+            newNode.nwxt = null;
+            break;
+        }
+        node.next = node;
+        newNode.next = next;
+        node = next
     }
-    node.next = null;
+    return head;
 }
+
