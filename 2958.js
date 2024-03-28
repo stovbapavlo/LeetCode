@@ -1,8 +1,4 @@
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {number}
- */
+
 var maxSubarrayLength = function(nums, k) {
     let freq = {};
     let ans = 0, i = 0, j = 1;
