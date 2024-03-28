@@ -1,5 +1,5 @@
 
-var maxSubarrayLength = function(nums, k) {
+const maxSubarrayLength = function(nums, k) {
     let freq = {};
     let ans = 0, i = 0, j = 1;
     freq[nums[0]] = 1; ans = 1;
