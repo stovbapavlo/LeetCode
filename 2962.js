@@ -4,23 +4,14 @@
  * @return {number}
  */
 var countSubarrays = function(nums, k) {
-    let max = - 1;
-    for(let i of nums) {
-        max = Math.max(max, i)
-    }
-    let ans = 0,
-        l = 0,
-        c = 0;
-
-    for(let i = 0; i < nums.length; i++) {
-        if(nums[i] === max) c++;
-
-        while(c >= k) {
-            if(nums[l] === max) c--;
-            l++;
+    let subarrays = 0, count = 0;
+    const max = Math.max(...nums);
+    for (let l = 0, r = 0; r < nums.length; r++) {
+        if (nums[r] === max) count++;
+        while (count >= k) {
+            subarrays += nums.length - r;
+            if (nums[l++] === max) count--;
         }
-        ans += l;
     }
-
-    return ans
-};
+    return subarrays;
+}
