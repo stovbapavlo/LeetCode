@@ -1,8 +1,4 @@
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {number}
- */
+
 var countSubarrays = function(nums, k) {
     let subarrays = 0, count = 0;
     const max = Math.max(...nums);
