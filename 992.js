@@ -3,31 +3,22 @@
  * @param {number} k
  * @return {number}
  */
-var subarraysWithKDistinct = function(nums, k) {
+var subarraysWithKDistinct = function (nums, k) {
+    return subarraysWithAtMostKDistinct(nums, k) - subarraysWithAtMostKDistinct(nums, k - 1);
+}
 
-    const getSubArray = (nums, k)  => {
-        let left = 0, right
-        let ans = 0
-        let map = new Map()
+function subarraysWithAtMostKDistinct(nums, k) {
+    let ans = 0;
+    const count = new Array(nums.length + 1).fill(0);
 
-        for(right = 0; right < nums.length; ++right) {
-            let item = nums[right]
-
-            if(!map.has(item) || map.get(item) === 0) {
-                k--
-            }
-            map.set(item, (map.get(item) || 0) + 1)
-
-            while(k < 0) {
-                map.set(nums[left], map.get(nums[left]) - 1)
-                if(map.get(nums[left]) === 0) k++
-                left++
-            }
-            ans += (right - left + 1)
-
-        }
-        return ans
-
+    for (let l = 0, r = 0; r < nums.length; ++r) {
+        if (++count[nums[r]] === 1)
+            --k;
+        while (k === -1)
+            if (--count[nums[l++]] === 0)
+                ++k;
+        ans += r - l + 1;
     }
-    return getSubArray(nums, k) - getSubArray(nums, k - 1)
-};
+
+    return ans;
+}
