@@ -1,6 +1,6 @@
 const s = "(1+(2*3)+((8)/4))+1";
 
-var maxDepth = function(s) {
+const maxDepth = function(s) {
     let counter = 0;
     let n = s.length;
     let maxCounter = 0;
