@@ -3,15 +3,14 @@
  * @return {number[]}
  */
 var deckRevealedIncreasing = function(deck) {
-    let stack = deck.sort((a, b) => b - a)
+    deck.sort((a,b) => a-b);
+    const ans = []
 
-    let queue = [stack.shift()]
-
-    while (stack.length > 0) {
-        queue.unshift(queue.pop());
-        queue.unshift(stack.shift())
+    while (deck.length) {
+        ans.unshift(deck.pop())
+        ans.unshift(ans.pop())
     }
+    ans.push(ans.shift())
 
-    return queue
-
+    return ans
 };
