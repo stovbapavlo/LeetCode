@@ -4,24 +4,20 @@
  * @return {string}
  */
 var removeKdigits = function(num, k) {
-    const stack = [];
-    let removed = 0;
-    for(let n of num) {
-        while(stack.length && n < stack[stack.length-1] && removed < k) {
-            stack.pop();
-            removed += 1;
+    let stk = [] , rem = 0;
+    for( let n of num ){
+        while( stk.length && n < stk[stk.length - 1] && rem < k ){
+            stk.pop();
+            rem++;
         }
-        stack.push(n);
+        stk.push(n);
     }
-
-    while(removed < k) {
-        stack.pop();
-        removed += 1;
+    while( rem < k ){
+        stk.pop();
+        rem++;
     }
-
-    while(stack.length && stack[0] === '0') {
-        stack.shift();
+    while( stk[0] === "0" ){
+        stk.shift()
     }
-
-    return stack.length ? stack.join('') : '0';
+    return stk.length ? stk.join('') : "0";
 };
