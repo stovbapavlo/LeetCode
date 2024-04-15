@@ -10,12 +10,20 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var sumNumbers = function(root) {
-    function traverse(node, num) {
-        if(!node) return null;
-        num += node.val
-        if(!node.left && !node.right) return +num;
-        return traverse(node.left, num) + traverse(node.right, num);
+const sumNumbers = (root) => {
+
+    function dfs(node, num){
+        if(!node) return 0;
+
+        num = num * 10 + node.val;
+
+        if(!node.left && !node.right) return num;
+
+        const leftNode = dfs(node.left, num);
+        const rightNode = dfs(node.right, num);
+
+        return leftNode + rightNode;
     }
-    return traverse(root, '');
+
+    return dfs(root, 0)
 };
