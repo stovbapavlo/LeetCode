@@ -11,19 +11,18 @@
  * @return {string[]}
  */
 var binaryTreePaths = function(root) {
-    const paths = [];
+    let paths = [];
 
-    function dfs(node, path) {
-        if (!node) return;
-        path.push(node.val.toString());
-        if (!node.left && !node.right) {
-            paths.push(path.join('->'));
-        } else {
-            dfs(node.left, path.slice()); // Copy the path array
-            dfs(node.right, path.slice()); // Copy the path array
+    function dfsTraversal(root, cur) {
+        if (!root) return;
+        if (!root.left && !root.right) {
+            paths.push(cur + root.val);
+            return;
         }
+        dfsTraversal(root.left, cur + root.val + "->");
+        dfsTraversal(root.right, cur + root.val + "->");
     }
 
-    dfs(root, []);
+    dfsTraversal(root, "");
     return paths;
 };
