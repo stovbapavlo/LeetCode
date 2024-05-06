@@ -19,3 +19,15 @@ var searchInsert = function(nums, target) {
     }
     return low
 };
+
+
+/*Fan solution
+*
+     nums.push(target);
+    nums.sort((a, b) => a - b)
+
+    return nums.indexOf(target)
+*
+*
+* */
+
