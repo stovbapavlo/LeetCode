@@ -2,9 +2,9 @@
  * @param {Object|Array} obj
  * @return {boolean}
  */
-var isEmpty = function(obj) {
+const isEmpty = function(obj) {
     for (let key in obj) {
-        retunr false;
+        return false;
     }
     return true
 };
