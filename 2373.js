@@ -3,21 +3,20 @@
  * @return {number[][]}
  */
 var largestLocal = function(grid) {
-    const matrix = new Array(grid.length -2).fill(0)
-        .map(() => new Array(grid[0].length-2).fill(0));
+    const n = grid.length - 1;
+    const result = [];
 
-    for (let i=0; i< grid[i].length -2 ; i++){
-        for(let j=0; j<grid.length -2 ;j++){
-
-            //find the max in each 3x3 martix
-            matrix[i][j] = Math.max(
-                grid[i][j],     grid[i][j+1],   grid[i][j+2],
-                grid[i+1][j],  grid[i+1][j+1],  grid[i+1][j+2],
-                grid[i+2][j],  grid[i+2][j+1],  grid[i+2][j+2]
+    for (let i = 1; i < n; i++) {
+        const row = [];
+        for (let j = 1; j < n; j++) {
+            row[j - 1] = Math.max(
+                grid[i - 1][j - 1], grid[i - 1][j], grid[i - 1][j + 1],
+                grid[i][j - 1], grid[i][j], grid[i][j + 1],
+                grid[i + 1][j - 1], grid[i + 1][j], grid[i + 1][j + 1]
             );
+        };
+        result[i - 1] = row;
+    };
 
-        }
-    }
-
-    return matrix;
+    return result;
 };
