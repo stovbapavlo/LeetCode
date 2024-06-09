@@ -4,16 +4,14 @@
  * @return {number}
  */
 var subarraysDivByK = function(nums, k) {
-    let map ={}
-    map[0] = 1;
-    let count = 0;
-    let total = 0;
-
-    for(let num of nums){
-        count = (count+num) %k;
-        if(count<0) count +=k;
-        if(map[count]) total += map[count]
-        map[count] = map[count] ? map[count] + 1 : 1
+    let freq = new Array(k).fill(0)
+    let sum = 0 , count =0
+    freq[0] = 1
+    for(const num of nums)
+    {
+        sum = (sum+num%k+k)%k
+        count+=freq[sum]
+        freq[sum]++
     }
-    return total;
+    return count
 };
