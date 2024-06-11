@@ -4,15 +4,13 @@
  * @return {number[]}
  */
 var relativeSortArray = function(arr1, arr2) {
-    const lookup = new Map();
-    const N = arr2.length;
-    arr2.forEach((a, i) => {
-        lookup.set(a, i);
-    });
-    return arr1.sort((a, b) => {
-        a = lookup.has(a) ? lookup.get(a) : N + a;
-        b = lookup.has(b) ? lookup.get(b) : N + b;
-        return a - b;
-    });
+    arr1 = arr1.sort((a, b) => arr2.indexOf(a) - arr2.indexOf(b))
+    s = new Set(arr2)
+    let end = []
+    while (!s.has(arr1[0])) {
+        end.push(arr1.shift())
+    }
+    end = end.sort((a, b) => a - b)
+    return [...arr1, ...end]
 
 };
