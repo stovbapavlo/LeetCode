@@ -14,3 +14,21 @@ var relativeSortArray = function(arr1, arr2) {
     return [...arr1, ...end]
 
 };
+
+
+
+/*let map = new Map();
+    let n = arr1.length
+    arr2.forEach((item, index)=>{
+        map.set(item, index);
+    });
+
+    return arr1.sort((a,b)=>{
+        a = map.has(a) ? map.get(a) : n+a;
+        b = map.has(b) ? map.get(b) : n+b;
+
+        return a-b;
+    })
+
+
+    return ans;*/
