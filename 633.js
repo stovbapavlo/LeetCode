@@ -3,14 +3,19 @@
  * @return {boolean}
  */
 var judgeSquareSum = function(c) {
-    if (c === 0) {
-        return true
-    }
-    for (let a = 0; a*a < c; a++) {
-        let b = Math.sqrt(parseFloat(c-a*a));
-        if (b - Math.round(b) === 0) {
-            return true;
+    let left = 0;
+    let right = Math.ceil(Math.sqrt(c));
+
+    while (left<=right ){
+        const x = left**2 + right**2;
+
+        if (c > x){
+            left++
         }
+        else if (c < x){
+            right--
+        }
+        else return true
     }
     return false
 };
