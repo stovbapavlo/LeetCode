@@ -4,18 +4,17 @@
  * @return {number}
  */
 var maximumImportance = function(n, roads) {
-    let res = 0, cost = 1;
-    let conn = new Array(n).fill(0);
-
-    for (const road of roads) {
-        conn[road[0]]++;
-        conn[road[1]]++;
+    let count = new Array(n).fill(0);
+    let result = 0;
+    for (let road of roads) {
+        ++count[road[0]];
+        ++count[road[1]];
     }
 
-    conn.sort((a, b) => a - b);
+    count.sort((a,b) => a - b);
 
-    for (const con of conn) {
-        res += con * cost++;
+    for (let i = n - 1; i >= 0; --i) {
+        result += count[i] * (n--);
     }
-    return res;
+    return result;
 };
