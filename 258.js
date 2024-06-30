@@ -1,3 +1,7 @@
-let num = 123
-
-console.log(1 + (num - 1) % 9)
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var addDigits = function(num) {
+    return 1 + (num - 1) % 9;
+};
