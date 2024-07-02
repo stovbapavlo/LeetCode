@@ -1,16 +1,22 @@
-let nums1 = [1,2,2,1], nums2 = [2,2]
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function(nums1, nums2) {
+    let Map = {}
+    let res = []
 
-let res = []
+    for(let num of nums1){
+        Map[num] = (Map[num] || 0) + 1
+    }
 
-
-for(let i = 0; i < nums1.length; i++) {
-    for(let j = 0; j < nums2.length - 1; j++) {
-        if(nums1[i] === nums2[j]) {
-            res.push(nums1[i]);
-
-
+    for(let num of nums2) {
+        if(Map[num] > 0) {
+            res.push(num)
+            Map[num]--
         }
     }
-}
 
-console.log(res)
+    return res
+};
