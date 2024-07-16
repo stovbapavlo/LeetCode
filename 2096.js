@@ -26,7 +26,7 @@ var getDirections = function(root, startValue, destValue) {
         getPath(node.left, path + "L");
         getPath(node.right, path + "R");
     }
-    ф
+
     getPath(root, "");
 
     let index = 0;
