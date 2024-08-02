@@ -1,12 +1,23 @@
-let n = nums.length;
-let x = nums.reduce((x, e) => x + e, 0);
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSwaps = function(nums) {
+    let total = 0;
+    nums.forEach(num=>{
+        total+=num;
+    })
+    let minSwaps = total
+    let swaps = total
+    let initArray = nums.slice(0, total);
+    let initNumsLength = nums.length;
+    initArray.forEach(val=>{swaps-=val})
+    let extendedArray = nums.concat(initArray)
+    nums.forEach((num, index)=>{
 
-let max = -Infinity, y = 0;
-for (let z = 0, a = -x; z < n + x; z++, a++) {
-    y += nums[z % n];
-    if (a >= 0) {
-        y -= nums[a % n];
-    }
-    max = Math.max(max, y);
-}
-return x - max;
+        swaps -= (extendedArray[index+total]- num);
+        if(minSwaps > swaps ){minSwaps = swaps}
+
+    })
+    return minSwaps
+};
