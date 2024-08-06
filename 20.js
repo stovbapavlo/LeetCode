@@ -1,5 +1,5 @@
 
-var isValid = function(s) {
+const  isValid = function(s) {
     const stack = []
     const complement = {
         ')':'(',
@@ -14,3 +14,5 @@ var isValid = function(s) {
     return stack.length === 0;
 
 };
+
+console.log(isValid("([])"));
