@@ -1,8 +1,3 @@
 var findComplement = function(num) {
-    let bin = 2
-    while(bin <= num){
-        bin *= 2
-    }
-    return bin - num - 1
-
+    return parseInt(num.toString(2).split('').map(bit => bit === '0' ? '1' : '0').join(''), 2);
 };
